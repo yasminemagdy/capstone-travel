@@ -4,4 +4,4 @@ Your index.js file inside the client folder should import the main function of y
   But in order to import, where will you need to export it?
 */
 
-import './styles/main.scss'
+import '../Client/styles/main.scss'
