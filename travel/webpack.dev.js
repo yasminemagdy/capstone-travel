@@ -1,58 +1,45 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
+    entry: './src/client/index.js',
     mode: 'development',
-    entry: './src/Client/index.js',
     devtool: 'source-map',
-    devServer: {port:3000},
+    stats: 'verbose',
     output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.min.js',
         libraryTarget: 'var',
-        library: 'Client',
-        path: path.resolve(__dirname, 'dist')
+        library: 'Client'
     },
     module: {
-        rules:[
+        rules: [
             {
-                test: '/\.js$',
-                exclude: 'node_modules',
-                loader: 'babel-loader'
+                test: '/\.js$/',
+                exclude: /node_modules/,
+                loader: "babel-loader"
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader' , 'sass-loader']
-            },
-            {
-                test: /\.html$/,
-                use: ['html-loader']
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/,
-                use:[{
-                    loader: 'file-loader',
-                    options:{name: '[name].[ext]'}
-                }]
+                use: ['style-loader' , 'css-loader' , 'sass-loader']
             }
-        ]
+        ,]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/Client/views/index.html',
-            filename: './index.html'
+        new HtmlWebPackPlugin({
+            template: "./src/client/views/index.html",
+            filename: "./index.html",
         }),
         new CleanWebpackPlugin({
-            // simulate the removal of files
+            // Simulate the removal of files
             dry: true,
-            //write logs to console
+            // Write Logs to Console
             verbose: true,
-            // remove unused webpack assets on rebuild automatically
-            cleanStaleWebpackAssets: false,
+            // Automatically remove all unused webpack assets on rebuild
+            cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-
-        }),
-        
-
+        })
     ]
 }
