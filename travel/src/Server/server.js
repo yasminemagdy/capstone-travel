@@ -14,8 +14,8 @@ const app = express();
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
@@ -29,6 +29,7 @@ app.get('/', function(req,res) {
 })
 
 //POST Route 
+const data = [];
 app.post('/add' ,information);
 
 function information(req , res){
@@ -40,13 +41,11 @@ function information(req , res){
     console.log(projectData);
 }
 //calling a function to complete GET '/all
-//app.get('/all' ,getInfo);
+app.get('/all' ,getInfo);
 
-//function getInfo(req, res) {
-  //  res.send(projectData)
-//}
-
-
+function getInfo(req, res) {
+    res.send(projectData)
+}
 
 // Setup Server
 const port = 8080;
