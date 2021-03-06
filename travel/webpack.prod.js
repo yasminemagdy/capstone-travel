@@ -5,7 +5,7 @@ const workboxplugin = require('workbox-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-    entry: './src/client/index.js',
+    entry: './src/Client/index.js',
     mode: 'production',
     output: {
         libraryTarget: 'var',
@@ -31,7 +31,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
+            template: "./src/Client/views/index.html",
             filename: "./index.html",
         }),
         new workboxplugin.GenerateSW({
