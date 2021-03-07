@@ -18,8 +18,10 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
-
+app.use(express.static('dist'));
+app.get('/', function(req,res) {
+    res.sendFile('dist/index.html')
+})
 //POST Route 
 const data = [];
 app.post('/add' ,information);
@@ -46,3 +48,5 @@ app.listen(port , listening);
 function listening(){
     console.log(`Server running on localhost : ${port}`)
 }
+
+module.exports = {getInfo, information}
