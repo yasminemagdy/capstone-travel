@@ -40,7 +40,7 @@ function getInfo(req, res) {
 }
 
 // Setup Server
-const port = 3030;
+const port = 9000;
 app.listen(port , listening);
 
 function listening(){
