@@ -8,6 +8,7 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    devServer:{port:3000},
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.min.js',

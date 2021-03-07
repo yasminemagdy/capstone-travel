@@ -48,7 +48,7 @@ function getInfo(req, res) {
 }
 
 // Setup Server
-const port = 8080;
+const port = 3000;
 app.listen(port , listening);
 
 function listening(){
