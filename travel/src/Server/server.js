@@ -1,4 +1,3 @@
-var path = require('path');
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 
@@ -19,14 +18,10 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('dist'));
-
-//GET Route
-app.get('/', function(req,res) {
-    res.sendFile('dist/index.html')
-})
+app.use(express.static('website'));
 
 //POST Route 
+const data = [];
 app.post('/add' ,information);
 
 function information(req , res){
