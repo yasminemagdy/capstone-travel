@@ -1,5 +1,4 @@
-var path = require('path')
-
+var path = require('path');
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 
@@ -8,7 +7,6 @@ const express = require('express');
 
 // Dependencies //
 const bodyParser = require('body-parser');
-
 // Start up an instance of app
 const app = express();
 
@@ -29,7 +27,6 @@ app.get('/', function(req,res) {
 })
 
 //POST Route 
-const data = [];
 app.post('/add' ,information);
 
 function information(req , res){
