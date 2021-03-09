@@ -24,10 +24,10 @@ function action(event) {
     getData(url , zip , key , units)
     .then(function(u) {
         console.log(u)
-        postData('/add' , {date:newDate , temp:u.main.temp , content})
+        postData("/add" , {date:newDate , temp:u.main.temp , content})
         //Function to updat UI
         const UI = async () => {
-            const request = await fetch('/all');
+            const request = await fetch("/all");
             try{
                 const wholeData = await request.json();
                 document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
@@ -52,9 +52,9 @@ const getData = async(url , zip , key , units) => {
 }
 
 /* Function to POST data */
-const postData = async(url='' , data={}) => {
+const postData = async (url="" , data={}) => {
     const request = await fetch(url , {
-        method :'POST' ,
+        method :"POST" ,
         credentials : "same-origin" ,
         headers : {
             "Content-Type" : "application/json"
@@ -64,7 +64,7 @@ const postData = async(url='' , data={}) => {
             temp : data.temp ,
             content : data.content
         })
-    })
+    });
     try{
         const newD = await request.json();
         return newD;
