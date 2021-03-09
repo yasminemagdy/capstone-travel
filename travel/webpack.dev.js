@@ -10,9 +10,6 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     devServer:{
-        proxy: {
-            '/api': 'http://localhost:9000'
-        },
         port: 9000
     },
     output: {
