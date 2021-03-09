@@ -76,4 +76,4 @@ const UI = async () => {
     }
 };
 
-export{UI, postData , getData , action}
+export{action}

@@ -13,7 +13,7 @@ module.exports = {
         port: 9000
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.min.js',
         libraryTarget: 'var',
         library: 'Client'
@@ -37,6 +37,10 @@ module.exports = {
                         name: '[name].[ext]'
                     }
                 }]
+            },
+            {
+                test: /\.html$/,
+                use: ['html-loader']
             }
         ,]
     },
