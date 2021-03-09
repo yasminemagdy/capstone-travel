@@ -2,7 +2,7 @@
 let projectData = {};
 
 // Require Express to run server and routes
-const express = require('express');
+const express = require("express");
 
 // Dependencies //
 const bodyParser = require('body-parser');
@@ -15,16 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Cors for cross origin allowance
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('dist'));
-app.get('/', function(req,res) {
-    res.sendFile('dist/index.html')
+app.use(express.static("dist"));
+app.get("/", function(req,res) {
+    res.sendFile("dist/index.html")
 })
 //POST Route 
 const data = [];
-app.post('/add' ,information);
+app.post("/add" ,information);
 
 function information(req , res){
     
@@ -35,14 +35,14 @@ function information(req , res){
     console.log(projectData);
 }
 //calling a function to complete GET '/all
-app.get('/all' ,getInfo);
+app.get("/all" ,getInfo);
 
 function getInfo(req, res) {
     res.send(projectData)
 }
 
 // Setup Server
-const port = 9000;
+const port = 5000;
 app.listen(port , listening);
 
 function listening(){
