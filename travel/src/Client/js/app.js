@@ -24,8 +24,19 @@ function action(event) {
     getData(url , zip , key , units)
     .then(function(u) {
         console.log(u)
-        postData('http://localhost:9000/add' , {date:newDate , temp:u.main.temp , content})
-        UI();
+        postData('/add' , {date:newDate , temp:u.main.temp , content})
+        //Function to updat UI
+        const UI = async () => {
+            const request = await fetch('/all');
+            try{
+                const wholeData = await request.json();
+                document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
+                document.getElementById('temp').innerHTML = `Temp: ${wholeData.temp} Celcius`;
+                document.getElementById('content').innerHTML = `Feeling: ${wholeData.content}`;
+            }catch(error){
+                console.log("error" , error)
+            }
+        };
     })
 }
 
@@ -58,19 +69,6 @@ const postData = async(url='' , data={}) => {
     try{
         const newD = await request.json();
         return newD;
-    }catch(error){
-        console.log("error" , error)
-    }
-};
-
-//Function to update UI
-const UI = async () => {
-    const request = await fetch('http://localhost:9000/all');
-    try{
-        const wholeData = await request.json();
-        document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
-        document.getElementById('temp').innerHTML = `Temp: ${wholeData.temp} Celcius`;
-        document.getElementById('content').innerHTML = `Feeling: ${wholeData.content}`;
     }catch(error){
         console.log("error" , error)
     }
