@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "node src/Server/server.js",
-    "build": "webpack",
+    "build": "webpack --config webpack.dev.js",
     "prod": "webpack --config webpack.prod.js",
     "dev": "webpack serve  --config webpack.dev.js --open"
   },

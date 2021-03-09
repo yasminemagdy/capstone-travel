@@ -9,7 +9,12 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
-    devServer:{port:9000},
+    devServer:{
+        proxy: {
+            '/api': 'http://localhost:9000'
+        },
+        port: 9000
+    },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.min.js',

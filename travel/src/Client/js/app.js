@@ -75,3 +75,5 @@ const UI = async () => {
         console.log("error" , error)
     }
 };
+
+export{UI, postData , getData , action}

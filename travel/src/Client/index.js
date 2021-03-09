@@ -5,6 +5,6 @@ Your index.js file inside the client folder should import the main function of y
 */
 
 import '../Client/styles/main.scss'
-import {action} from './js/app.js'
+import {action , UI , getData , postData} from './js/app'
 
-export {action}
+export {action , UI , postData , getData}
