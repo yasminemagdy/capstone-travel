@@ -10,7 +10,7 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     devServer:{
-        port: 9000
+        port: 5000
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
