@@ -24,7 +24,7 @@ function action(event) {
     getData(url , zip , key , units)
     .then(function(u) {
         console.log(u)
-        postData("/add" , {date:newDate , temp:u.main.temp , content})
+        postData("http://localhost:5000/add" , {date:newDate , temp:u.main.temp , content})
         //Function to updat UI
         const UI = async () => {
             const request = await fetch("/all");
