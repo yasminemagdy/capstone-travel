@@ -55,6 +55,7 @@ const getData = async(url , zip , key , units) => {
 const postData = async (url="" , data={}) => {
     const request = await fetch(url , {
         method :"POST" ,
+        mode: 'cors',
         credentials : "same-origin" ,
         headers : {
             "Content-Type" : "application/json"
