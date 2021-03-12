@@ -24,19 +24,9 @@ function action(event) {
     getData(url , zip , key , units)
     .then(function(u) {
         console.log(u)
-        postData("http://localhost:5000/add" , {date:newDate , temp:u.main.temp , content})
+        postData("/add" , {date:newDate , temp:u.main.temp , content});
+        UI();
         //Function to updat UI
-        const UI = async () => {
-            const request = await fetch("/all");
-            try{
-                const wholeData = await request.json();
-                document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
-                document.getElementById('temp').innerHTML = `Temp: ${wholeData.temp} Celcius`;
-                document.getElementById('content').innerHTML = `Feeling: ${wholeData.content}`;
-            }catch(error){
-                console.log("error" , error)
-            }
-        };
     })
 }
 
@@ -74,4 +64,15 @@ const postData = async (url="" , data={}) => {
     }
 };
 
+const UI = async () => {
+    const request = await fetch("/all");
+    try{
+        const wholeData = await request.json();
+        document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
+        document.getElementById('temp').innerHTML = `Temp: ${wholeData.temp} Celcius`;
+        document.getElementById('content').innerHTML = `Feeling: ${wholeData.content}`;
+    }catch(error){
+        console.log("error" , error)
+    }
+};
 export{action}
