@@ -1,7 +1,10 @@
 /* Global Variables */
-const url = "http://api.openweathermap.org/data/2.5/weather?zip="
-const key = "&appid=9851d7c37c05e8ae7e45530fc8b3b9e8";
-const units = "&units=metric"
+const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
+const arriveCity = document.getElementById('cityname');
+const leaveCity = document.getElementById('leave')
+const date = document.getElementById('date');
+const user = "yasmine";
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+ 1 +'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -13,26 +16,29 @@ document.getElementById("generate").addEventListener('click' , action);
 function action(event) {
     event.preventDefault();
 
-    const zip = document.getElementById('zip').value;
-    const content = document.getElementById('feelings').value;
+    const nameOfCity = arriveCity.value;
     //checking if zip is empty !
-    if(zip == "") {
+    if(nameOfCity == "") {
         alert("Please Fill Out The Empty Field");
         return false;
     }
 
-    getData(url , zip , key , units)
+    getData(geoNamesUrl , arriveCity , user)
     .then(function(u) {
         console.log(u)
-        postData("/add" , {date:newDate , temp:u.main.temp , content});
+        postData("/add" , {countryName : u.geonames[0].countryName , longitude: u.geonames[0].lng , latitude: u.geonames[0].lat});
         UI();
         //Function to updat UI
     })
 }
 
+//values 
+const arriveCityValue = arriveCity.value;
+const leavValue = leaveCity.value;
+const dateValue = date.value;
 /* Function to GET Web API Data*/
-const getData = async(url , zip , key , units) => {
-    const response = await fetch(url + zip + key + units);
+const getData = async (geoNameUrl , arriveCityValue , user) => {
+    const response = await fetch(geoNameUrl + arriveCityValue + "maxRows=10&" + "username=" + user );
     try{
         const Data = await response.json();
         return Data;
@@ -51,9 +57,9 @@ const postData = async (url="" , data={}) => {
             "Content-Type" : "application/json"
         },
         body : JSON.stringify({
-            date : data.date,
-            temp : data.temp ,
-            content : data.content
+            latitude : data.countryName,
+            longitude : data.lat ,
+            country : data.lng
         })
     });
     try{
@@ -68,9 +74,9 @@ const UI = async () => {
     const request = await fetch("/all");
     try{
         const wholeData = await request.json();
-        document.getElementById('date').innerHTML = `Date: ${wholeData.date}`;
-        document.getElementById('temp').innerHTML = `Temp: ${wholeData.temp} Celcius`;
-        document.getElementById('content').innerHTML = `Feeling: ${wholeData.content}`;
+        document.getElementById('leave').innerHTML = `You are leaving from : ${wholeData.country}`;
+        document.getElementById('cityname').innerHTML = `To: ${wholeData.latitude}`;
+        document.getElementById('date').innerHTML = `On: ${wholeData.longitude}`;
     }catch(error){
         console.log("error" , error)
     }

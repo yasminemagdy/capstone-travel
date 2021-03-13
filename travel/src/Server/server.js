@@ -29,9 +29,9 @@ app.post("/add" ,information);
 
 function information(req , res){
     
-    projectData.date = req.body.date;
-    projectData.temp= req.body.temp;
-    projectData.content = req.body.content;
+    projectData['countryName'] = req.body.countryName;
+    projectData['latitude']= req.body.latitude;
+    projectData['longitude'] = req.body.longitude;
     res.send(projectData);
     console.log(projectData);
 }
