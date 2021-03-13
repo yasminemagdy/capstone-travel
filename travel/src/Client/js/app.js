@@ -1,9 +1,11 @@
 /* Global Variables */
 const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
-const arriveCity = document.getElementById('cityname');
+const cityname = document.getElementById('cityname');
 const leaveCity = document.getElementById('leave')
 const date = document.getElementById('date');
 const user = "yasmine";
+let nameOfCity = cityname.value;
+let leavcityvalue = leaveCity.value;
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -15,30 +17,37 @@ document.getElementById("generate").addEventListener('click' , action);
 /* Function called by event listener */
 function action(event) {
     event.preventDefault();
+    const datv = date.value;
+    const cityv = cityname.value;
+    const leve = leaveCity.value
 
-    const nameOfCity = arriveCity.value;
-    //checking if zip is empty !
-    if(nameOfCity == "") {
-        alert("Please Fill Out The Empty Field");
+    if(datv== "") {
+        alert('Please Fill Out The Empty Field')
         return false;
     }
 
-    getData(geoNamesUrl , arriveCity , user)
+    if(cityv == ""){
+        alert('Please Fill Out The Empty Field')
+        return false
+    }
+    
+    if(leve == ""){
+        alert("Please Fill Out The Empty Field")
+        return false
+    }
+
+    getData(geoNamesUrl , nameOfCity , user)
     .then(function(u) {
         console.log(u)
-        postData("/add" , {countryName : u.geonames[0].countryName , longitude: u.geonames[0].lng , latitude: u.geonames[0].lat});
+        postData("/add" , {countryName :u.geonames[0].countryName , longitude: u.geonames[0].lng , latitude: u.geonames[0].lat});
         UI();
         //Function to updat UI
     })
 }
 
-//values 
-const arriveCityValue = arriveCity.value;
-const leavValue = leaveCity.value;
-const dateValue = date.value;
 /* Function to GET Web API Data*/
-const getData = async (geoNameUrl , arriveCityValue , user) => {
-    const response = await fetch(geoNameUrl + arriveCityValue + "maxRows=10&" + "username=" + user );
+const getData = async (geoNameUrl , nameOfCity , user) => {
+    const response = await fetch(geoNameUrl + nameOfCity +"&maxRows=10&username="+ user );
     try{
         const Data = await response.json();
         return Data;
@@ -57,9 +66,10 @@ const postData = async (url="" , data={}) => {
             "Content-Type" : "application/json"
         },
         body : JSON.stringify({
-            latitude : data.countryName,
-            longitude : data.lat ,
-            country : data.lng
+            latitude : data.latitude,
+            longitude : data.longitude ,
+            countryName :data.countryName,
+            date : date.value
         })
     });
     try{
@@ -74,9 +84,9 @@ const UI = async () => {
     const request = await fetch("/all");
     try{
         const wholeData = await request.json();
-        document.getElementById('leave').innerHTML = `You are leaving from : ${wholeData.country}`;
-        document.getElementById('cityname').innerHTML = `To: ${wholeData.latitude}`;
-        document.getElementById('date').innerHTML = `On: ${wholeData.longitude}`;
+        document.getElementById('l').innerHTML = `You are leaving from : ${leaveCity.value}`;
+        document.getElementById('c').innerHTML = `To: ${wholeData.countryName}`;
+        document.getElementById('de').innerHTML = `On: ${wholeData.date}`;
     }catch(error){
         console.log("error" , error)
     }

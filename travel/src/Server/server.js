@@ -32,6 +32,7 @@ function information(req , res){
     projectData['countryName'] = req.body.countryName;
     projectData['latitude']= req.body.latitude;
     projectData['longitude'] = req.body.longitude;
+    projectData['date'] = req.body.date;
     res.send(projectData);
     console.log(projectData);
 }

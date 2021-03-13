@@ -41,20 +41,11 @@ body{
 text-align: center;
 }
 
-#date{
-    color: #f9f8ff;
-    margin: 1em;
-}
-
-#temp{
+#l, #c , #de{
  color: #fffff8;
  margin: 1em;
 }
 
-#content{
-    color: #fffff8;
-    margin: 1em;
-}
 #cityname, #leave , #date{
     margin-left: 6.2em;
     background: rgba(59, 74, 107, .4);
