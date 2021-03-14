@@ -28,11 +28,13 @@ const data = [];
 app.post("/add" ,information);
 
 function information(req , res){
-    
-    projectData['countryName'] = req.body.countryName;
-    projectData['latitude']= req.body.latitude;
+    projectData['latitude'] = req.body.latitude;
     projectData['longitude'] = req.body.longitude;
+    projectData['countryName'] = req.body.countryName;
+    projectData['cityName'] = req.body.cityName;
+    projectData['leaving_From'] = req.body.leaving;
     projectData['date'] = req.body.date;
+    projectData['daysLeft'] = req.body.daysLeft;
     res.send(projectData);
     console.log(projectData);
 }
