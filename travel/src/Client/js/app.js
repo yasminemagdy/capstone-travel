@@ -7,8 +7,7 @@ const user = "yasmine";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+ 1 +'.'+ d.getDate()+'.'+ d.getFullYear();
-
+let newDate = d.getMonth()+ 1 +'-'+ d.getDate()+'-'+ d.getFullYear();
 // Event listener to add function to existing HTML DOM element
 document.getElementById("generate").addEventListener('click' , action);
 
@@ -70,7 +69,7 @@ const postData = async (url="" , data={}) => {
             leaving : data.leve ,
             cityName :data.cityv,
             date : date.value,
-            daysLesft: daysLeft,
+            daysLeft: newDate,
         })
     });
     try{
