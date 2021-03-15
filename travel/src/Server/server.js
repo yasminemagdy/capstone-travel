@@ -35,6 +35,7 @@ function information(req , res){
     projectData['leaving_From'] = req.body.leaving;
     projectData['date'] = req.body.date;
     projectData['daysLeft'] = req.body.daysLeft;
+    projectData['temp'] = req.body.temp
     res.send(projectData);
     console.log(projectData);
 }
