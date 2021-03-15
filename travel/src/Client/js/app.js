@@ -111,10 +111,10 @@ const UI = async () => {
         const daysLeft = new Date(date.value)
         const f = daysLeft.getDate() - d.getDate();  
         const wholeData = await request.json();
-        document.getElementById('l').innerHTML = `You are leaving from : ${leaveCity.value}`;
+        document.getElementById('l').innerHTML = `Your Trip from : ${leaveCity.value}`;
         document.getElementById('c').innerHTML = `To: ${wholeData.cityName} in ${wholeData.countryName}`;
         document.getElementById('de').innerHTML = `On: ${wholeData.date}`;
-        document.getElementById('countdown').innerHTML = `After : ${f} Days`
+        document.getElementById('after').innerHTML = `After : ${f} Days`
     }catch(error){
         console.log("error" , error)
     }
