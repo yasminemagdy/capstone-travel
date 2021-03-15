@@ -5,6 +5,10 @@ const leaveCity = document.getElementById('leave')
 const date = document.getElementById('date');
 const user = "yasmine";
 
+// weatherbit API and URL 
+const weatherBitAPI = `https://api.weatherbit.io/v2.0/forecast/daily?city=`;
+const weatherKEY = "d7bf7e7673614d349a16686a8d4e2149"
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+ 1 +'-'+ d.getDate()+'-'+ d.getFullYear();
@@ -33,17 +37,16 @@ function action(event) {
         return false
     }
 
-    getData(geoNamesUrl , cityv , user)
+    getCityData(geoNamesUrl , cityv , user)
     .then(function(u) {
         console.log(u)
         postData("/add" , {cityv , leve , datv , countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
         UI();
-        //Function to updat UI
     })
 }
 
-/* Function to GET Web API Data*/
-const getData = async (geoNameUrl , cityv , user) => {
+/* Function to GET City API Data*/
+const getCityData = async (geoNameUrl , cityv , user) => {
     const response = await fetch(geoNameUrl + cityv +"&maxRows=10&username="+ user );
     try{
         const Data = await response.json();
@@ -52,6 +55,18 @@ const getData = async (geoNameUrl , cityv , user) => {
         console.log("error" , err)
     }
 }
+
+/* Function to GET Weather API Data */
+const getWeatherbit = async (city_lat, city_lng , citynam) => {
+    const request = await fetch(weatherBitAPI + citynam + `&lat=${city_lat}&lng=${city_lng}&key=${weatherKEY}`)
+    try{
+        const wd = await request.json();
+        return wd;
+    }catch(error){
+        console.log("error" , error)
+    }
+}
+
 
 /* Function to POST data */
 const postData = async (url="" , data={}) => {
