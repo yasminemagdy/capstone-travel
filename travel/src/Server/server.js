@@ -34,8 +34,7 @@ function information(req , res){
     projectData['cityName'] = req.body.cityName;
     projectData['leaving_From'] = req.body.leaving;
     projectData['date'] = req.body.date;
-    projectData['daysLeft'] = req.body.daysLeft;
-    projectData['temp'] = req.body.temp
+    projectData['daysLeft'] = req.body.daysleft;
     res.send(projectData);
     console.log(projectData);
 }

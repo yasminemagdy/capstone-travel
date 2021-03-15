@@ -12,6 +12,11 @@ const weatherKEY = "d7bf7e7673614d349a16686a8d4e2149"
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+ 1 +'-'+ d.getDate()+'-'+ d.getFullYear();
+
+//days left
+const daysLeft = new Date(date.value)
+const f = daysLeft.getDate() - d.getDate();
+
 // Event listener to add function to existing HTML DOM element
 document.getElementById("generate").addEventListener('click' , action);
 
@@ -71,6 +76,9 @@ const getWeatherbit = async (city_lat, city_lng) => {
 
 /* Function to POST data */
 const postData = async (url="" , data={}) => {
+    //days left
+    const daysLeft = new Date(date.value)
+    const f = daysLeft.getDate() - d.getDate();  
     const request = await fetch(url , {
         method :"POST" ,
         mode: 'cors',
@@ -85,8 +93,7 @@ const postData = async (url="" , data={}) => {
             leaving : data.leve ,
             cityName :data.cityv,
             date : date.value,
-            daysLeft: newDate,
-            temp: data.temp
+            daysleft:f,
         })
     });
     try{
@@ -99,12 +106,15 @@ const postData = async (url="" , data={}) => {
 
 const UI = async () => {
     const request = await fetch("/all");
-    try{
+    try{  
+        //days left
+        const daysLeft = new Date(date.value)
+        const f = daysLeft.getDate() - d.getDate();  
         const wholeData = await request.json();
         document.getElementById('l').innerHTML = `You are leaving from : ${leaveCity.value}`;
         document.getElementById('c').innerHTML = `To: ${wholeData.cityName} in ${wholeData.countryName}`;
         document.getElementById('de').innerHTML = `On: ${wholeData.date}`;
-        document.getElementById('countdown').innerHTML = `Time Left: ${daysleft} `
+        document.getElementById('countdown').innerHTML = `After : ${f} Days`
     }catch(error){
         console.log("error" , error)
     }
