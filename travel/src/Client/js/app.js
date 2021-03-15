@@ -42,6 +42,7 @@ function action(event) {
         console.log(u)
         postData("/add" , {cityv , leve , datv ,countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
         UI();
+     
     })
 }
 
