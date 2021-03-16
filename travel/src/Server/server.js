@@ -26,6 +26,13 @@ app.get("/", function(req,res) {
 //POST Route 
 const data = [];
 app.post("/add" ,information);
+app.post('/weather', weather)
+
+function weather (req,res){
+    projectData['weather'] = req.body.weather;
+    res.send(projectData);
+    console.log(projectData)
+}
 
 function information(req , res){
     projectData['latitude'] = req.body.latitude;

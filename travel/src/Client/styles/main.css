@@ -9,7 +9,7 @@ body {
   grid-auto-rows: minmax(150px, auto);
   /* grid-template-columns:  */
   height: 100vh;
-  color: #f0d43a;
+  color: #fffff8;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -21,44 +21,34 @@ body {
 }
 
 .bas {
-  position: relative;
   background-size: auto;
-  width: 600px;
+  width: 680px;
   height: auto;
   background: transparent;
   background: #edf1f128;
 }
 
 .holder {
-  text-align: center;
+  margin-left: 2em;
 }
 
 .entry {
   background: rgba(59, 74, 107, 0.4);
+  width: 295px;
+  margin-left: 19em;
+  margin-top: -16em;
 }
 
 #entryHolder {
-  text-align: center;
+  text-align: left;
 }
 
-#date {
-  color: #f9f8ff;
-  margin: 1em;
-}
-
-#temp {
+#l, #c, #de, #after, #weather {
   color: #fffff8;
   margin: 1em;
 }
 
-#content {
-  color: #fffff8;
-  margin: 1em;
-}
-
-#zip {
-  margin-left: 6.2em;
-  background: rgba(59, 74, 107, 0.4);
+#cityname, #leave, #date {
   width: 300px;
   margin-right: 2em;
   margin-bottom: 1em;
@@ -67,7 +57,7 @@ body {
 }
 
 #generate {
-  margin-bottom: 0.4em;
+  width: 250px;
 }
 
 .headline {
@@ -76,18 +66,17 @@ body {
   height: 50px;
   font-size: 26px;
   color: #c3d2d3;
+  text-align: center;
 }
 
-.zip {
+.cityname {
   margin-left: 1em;
   margin-top: 2em;
   width: 350px;
 }
 
 .title {
-  width: 350px;
   text-align: center;
-  margin-left: 6em;
   color: #c3d2d3;
 }
 
@@ -130,21 +119,11 @@ button {
   border: none;
   -webkit-box-shadow: 2px 4px 5px #444;
           box-shadow: 2px 4px 5px #444;
-  border-radius: 2em;
+  border-radius: 1em;
 }
 
 h1 {
   font-size: 36px;
-}
-
-textarea {
-  background: rgba(167, 170, 177, 0.4);
-  color: #c3d2d3;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
-  height: 180px;
-  width: 300px;
-  border-radius: 0.3em;
 }
 
 /* Reset style for HTML element on active to have no border*/

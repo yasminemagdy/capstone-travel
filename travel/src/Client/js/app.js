@@ -25,7 +25,12 @@ function action(event) {
     event.preventDefault();
     const datv = date.value;
     const cityv = cityname.value;
-    const leve = leaveCity.value
+    const leve = leaveCity.value;
+
+    if(leve == cityv){
+        alert('OHH It seems like your in the city itself! , Go to another city')
+        return false;
+    }
 
     if(datv== "") {
         alert('Please Fill Out The Date Field')
@@ -33,21 +38,29 @@ function action(event) {
     }
 
     if(cityv == ""){
-        alert('Please Fill Out The Empty Field')
+        alert('Please Fill Out The Second Field')
         return false
     }
     
     if(leve == ""){
-        alert("Please Fill Out The Empty Field")
+        alert("Please Fill Out The First Field")
         return false
     }
 
     getCityData(geoNamesUrl , cityv , user)
     .then(function(u) {
-        console.log(u)
-        postData("/add" , {cityv , leve , datv ,countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
-        UI();
-     
+        const city_lat = u.geonames[0].lat;
+        const city_lng = u.geonames[0].lng;
+        getWeatherbit(city_lat, city_lng)
+        .then((u) => {
+            console.log(u);
+            postData('/weather' , {weather: u.data[0].temp})
+        }).then(() => {
+            console.log(u)
+            postData("/add" , {cityv , leve , datv ,countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
+            UI();
+        })
+       
     })
 }
 
@@ -94,6 +107,7 @@ const postData = async (url="" , data={}) => {
             cityName :data.cityv,
             date : date.value,
             daysleft:f,
+            weather : data.weather
         })
     });
     try{
@@ -114,7 +128,8 @@ const UI = async () => {
         document.getElementById('l').innerHTML = `Your Trip from : ${leaveCity.value}`;
         document.getElementById('c').innerHTML = `To: ${wholeData.cityName} in ${wholeData.countryName}`;
         document.getElementById('de').innerHTML = `On: ${wholeData.date}`;
-        document.getElementById('after').innerHTML = `After : ${f} Days`
+        document.getElementById('after').innerHTML = `After : ${f} Days`;
+        document.getElementById('weather').innerHTML = `Temp : ${wholeData.weather} Celsius`
     }catch(error){
         console.log("error" , error)
     }
