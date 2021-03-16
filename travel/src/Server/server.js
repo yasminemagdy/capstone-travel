@@ -27,6 +27,13 @@ app.get("/", function(req,res) {
 const data = [];
 app.post("/add" ,information);
 app.post('/weather', weather)
+app.post('/imag' , imag)
+
+function imag (req , res){
+    projectData['img'] = req.body.img;
+    res.send(projectData);
+    console.log(projectData)
+}
 
 function weather (req,res){
     projectData['weather'] = req.body.weather;
@@ -60,4 +67,4 @@ function listening(){
     console.log(`Server running on localhost : ${port}`)
 }
 
-module.exports = {getInfo, information}
+module.exports = {getInfo, information , imag , weather}

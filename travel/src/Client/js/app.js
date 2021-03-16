@@ -4,10 +4,15 @@ const cityname = document.getElementById('cityname');
 const leaveCity = document.getElementById('leave')
 const date = document.getElementById('date');
 const user = "yasmine";
+const cityValue = cityname.value;
 
 // weatherbit API and URL 
 const weatherBitAPI = `https://api.weatherbit.io/v2.0/forecast/daily?`;
 const weatherKEY = "d7bf7e7673614d349a16686a8d4e2149"
+
+//pixabay API and URL
+const pixabayurl = "https://pixabay.com/api/?"
+const pixabayKey = `key=20714610-a23f0d89119822e7408d9b201&`
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -55,7 +60,14 @@ function action(event) {
         .then((u) => {
             console.log(u);
             postData('/weather' , {weather: u.data[0].temp})
-        }).then(() => {
+        }).then(() =>  { 
+            getImg(pixabayurl , pixabayKey , cityValue)
+            .then((u) => {
+                console.log(u)
+                postData('/imag' , {img:u.hits[0].webformatURL})
+            })
+        })
+        .then(() => {
             console.log(u)
             postData("/add" , {cityv , leve , datv ,countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
             UI();
@@ -86,7 +98,17 @@ const getWeatherbit = async (city_lat, city_lng) => {
     }
 }
 
+const getImg = async (pixabayurl , pixabayKey , cityValue) => {
+    const response = await fetch(pixabayurl + pixabayKey + "&q" + `=${cityValue}`+ "city" + "&image_type=photo&category=places")
+    try{
+        const data = await response.json();
+        return data;
+    }catch(error){
+        console.log('error' , error)
+    }
 
+
+}
 /* Function to POST data */
 const postData = async (url="" , data={}) => {
     //days left
@@ -94,8 +116,8 @@ const postData = async (url="" , data={}) => {
     const f = daysLeft.getDate() - d.getDate();  
     const request = await fetch(url , {
         method :"POST" ,
-        mode: 'cors',
         credentials : "same-origin" ,
+        mode:'cors',
         headers : {
             "Content-Type" : "application/json"
         },
@@ -107,7 +129,8 @@ const postData = async (url="" , data={}) => {
             cityName :data.cityv,
             date : date.value,
             daysleft:f,
-            weather : data.weather
+            weather : data.weather,
+            img:data.img
         })
     });
     try{
@@ -130,6 +153,7 @@ const UI = async () => {
         document.getElementById('de').innerHTML = `On: ${wholeData.date}`;
         document.getElementById('after').innerHTML = `After : ${f} Days`;
         document.getElementById('weather').innerHTML = `Temp : ${wholeData.weather} Celsius`
+        document.getElementById('img').innerHTML = `<img src="${wholeData.img}" alt="cityImg" width="295px" height = "185px">`
     }catch(error){
         console.log("error" , error)
     }
