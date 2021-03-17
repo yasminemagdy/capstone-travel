@@ -23,10 +23,13 @@ app.use(express.static("dist"));
 app.get("/", function(req,res) {
     res.sendFile("dist/index.html")
 })
-//POST Route 
+//POST Routes 
 const data = [];
+//POST Geonames Data
 app.post("/add" ,information);
+//POST weatherbit Data
 app.post('/weather', weather);
+//POST Pixabay Data
 app.post('/imag' , imag);
 
 

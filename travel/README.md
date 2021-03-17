@@ -19,4 +19,7 @@ Second Magician , from its name , it gives you the weather information , and the
 #### [pixabay](#https://pixabay.com/)
 Third Magician , gives you the photo of the city ! to push u to go ! 
 
+###### suggestion
+I choosed to get the length of the trip 
+
 # HAVE A NICE VACATION 
