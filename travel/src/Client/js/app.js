@@ -7,15 +7,15 @@ const endDateValue = endDate.value;
 
 //Geonames URL and API(user)
 const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
-const user = "yasmine";
+const user = "y******";
 
 // weatherbit API and URL 
 const weatherBitAPI = `https://api.weatherbit.io/v2.0/forecast/daily?`;
-const weatherKEY = "d7bf7e7673614d349a16686a8d4e2149"
+const weatherKEY = "d7bf7e7673614d349a1668**********"
 
 //pixabay API and URL
 const pixabayurl = "https://pixabay.com/api/?"
-const pixabayKey = `key=20714610-a23f0d89119822e7408d9b201&`
+const pixabayKey = `key=20714610-a23f0d89119822e**********&`
 
 // Create a new date instance dynamically with JS
 let d = new Date();
