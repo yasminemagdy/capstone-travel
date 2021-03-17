@@ -5,7 +5,7 @@ let projectData = {};
 const express = require("express");
 
 // Dependencies //
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 // Start up an instance of app
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Cors for cross origin allowance
 const cors = require("cors");
-const { json } = require("body-parser");
+// { json } = require("body-parser");
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static("dist"));
@@ -26,8 +26,9 @@ app.get("/", function(req,res) {
 //POST Route 
 const data = [];
 app.post("/add" ,information);
-app.post('/weather', weather)
-app.post('/imag' , imag)
+app.post('/weather', weather);
+app.post('/imag' , imag);
+
 
 function imag (req , res){
     projectData['img'] = req.body.img;
@@ -50,6 +51,7 @@ function information(req , res){
     projectData['leaving_From'] = req.body.leaving;
     projectData['date'] = req.body.date;
     projectData['daysLeft'] = req.body.daysleft;
+    projectData['lenv'] = req.body.lenv
     res.send(projectData);
     console.log(projectData);
 }
@@ -68,4 +70,4 @@ function listening(){
     console.log(`Server running on localhost : ${port}`)
 }
 
-module.exports = {getInfo, information , imag , weather}
+module.exports = projectData

@@ -1,10 +1,14 @@
 /* Global Variables */
-const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
 const cityname = document.getElementById('cityname');
 const leaveCity = document.getElementById('leave')
 const date = document.getElementById('date');
-const user = "yasmine";
+const endDate = document.getElementById('endDate')
+
 const cityValue = cityname.value;
+const leaveCityValue = leaveCity.value;
+//Geonames URL and API(user)
+const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
+const user = "yasmine";
 
 // weatherbit API and URL 
 const weatherBitAPI = `https://api.weatherbit.io/v2.0/forecast/daily?`;
@@ -60,21 +64,21 @@ function action(event) {
         .then((u) => {
             console.log(u);
             postData('/weather' , {temp: u.data[0].temp , des: u.data[0].weather.description})
-        }).then(() =>  { 
-            getImg(pixabayurl , pixabayKey , cityValue)
-            .then((u) => {
-             //document.querySelector('#weather').scrollTo({behavior:"smooth"})
-                console.log(u)
-                postData('/imag' , {img:u.hits[0].pageURL})
-            })
         })
         .then(() => {
             document.getElementById('small').style.display = 'block'
            document.getElementById('small').addEventListener('click' , function(){this.scrollIntoView({behavior:'smooth'})})
             console.log(u)
-            postData("/add" , {cityv , leve , datv ,countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
+            postData("/add" , {cityv , leve , datv , countryName:u.geonames[0].countryName , lng:u.geonames[0].lng , lat:u.geonames[0].lat});
             UI();
 
+        })
+    }).then(() =>  { 
+        getImg(pixabayurl , pixabayKey)
+        .then((u) => {
+         //document.querySelector('#weather').scrollTo({behavior:"smooth"})
+            console.log(u)
+            postData('/imag' , {img:u.hits[0].webformatURL})
         })
     })
 }
@@ -101,8 +105,10 @@ const getWeatherbit = async (city_lat, city_lng) => {
     }
 }
 
-const getImg = async (pixabayurl , pixabayKey , cityValue) => {
-    const response = await fetch(pixabayurl + pixabayKey + "&q=" + `${cityValue}`+ "city" + "&image_type=photo&category=places")
+//Function To GET Photo API Data
+const getImg = async (pixabayurl , pixabayKey) => {
+    const response = await fetch(pixabayurl + `${pixabayKey}q=${cityname.value}&image_type=photo&category=places`);
+    console.log(response)
     try{
         const data = await response.json();
         return data;
@@ -112,11 +118,16 @@ const getImg = async (pixabayurl , pixabayKey , cityValue) => {
 
 
 }
+
 /* Function to POST data */
 const postData = async (url="" , data={}) => {
     //days left
     const daysLeft = new Date(date.value)
     const f = daysLeft.getDate() - d.getDate();  
+    //length
+    const len = new Date(endDate.value)
+    const lenv = len.getDate() - daysLeft.getDate()
+
     const request = await fetch(url , {
         method :"POST" ,
         credentials : "same-origin" ,
@@ -134,7 +145,8 @@ const postData = async (url="" , data={}) => {
             daysleft:f,
             temp : data.temp,
             des: data.des,
-            img:data.img
+            img:data.img,
+            lenv:lenv,
         })
     });
     try{
@@ -151,13 +163,18 @@ const UI = async () => {
         //days left
         const daysLeft = new Date(date.value)
         const f = daysLeft.getDate() - d.getDate();  
+
+        //length
+        const len = new Date(endDate.value)
+        const lenv = len.getDate() - daysLeft.getDate()
         const wholeData = await request.json();
         document.getElementById('fromToCity').innerHTML = `Your Trip from : ${leaveCity.value} To ${wholeData.cityName} in ${wholeData.countryName}`;
-        document.getElementById('fromToDate').innerHTML = `On: ${wholeData.date} ,  After : ${f} Days`
-        document.getElementById('weather').innerHTML = `Expected Weather To Be : ${wholeData.des} wiht temp: ${wholeData.temp} Celsius`
-        document.getElementById('img').innerHTML = `<img src="${wholeData.img}" alt="cityImg" width="680px" height = "185px">`
+        document.getElementById('fromToDate').innerHTML = `You will Arrive On: ${wholeData.date} , ${f} Days For Your Journey , You'll be there for ${lenv} days! , ENJOY`
+        document.getElementById('weather').innerHTML = `Expected Weather To Be : ${wholeData.des} wiht temp: ${wholeData.temp} Celsius <br><br>`
+        document.getElementById('img').innerHTML = `<img src="${wholeData.img}" alt="cityImg" width="680px" height = "250px">`
     }catch(error){
         console.log("error" , error)
     }
 };
+
 export{action}

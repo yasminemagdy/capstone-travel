@@ -15,7 +15,8 @@
   <div class ="holder cityname">
     <input type="text" id="leave" placeholder="FROM">
     <input type="text" id="cityname" placeholder="TO:">
-    <input type="date" id="date">
+    <input type="text" id="date" placeholder="date of arrival" onfocus="(this.type='date')">
+    <input type="text" id="endDate" placeholder="Departure Date" onfocus="(this.type='date')">
   </div>
   <div class ="holder feel">
     <button id="generate" type = "submit"> Generate </button>
@@ -28,8 +29,22 @@
    <p id="fromToCity"></p> 
    <p id="fromToDate"></p>
    <p id="weather"></p>
+   <p id="pdf"></p>
    <div id="img"></div>
 </section>
 </div>
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load' , () =>{
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(regristration => {
+        console.log('regristartion is successful')
+
+      });
+    });
+  }else{
+    console.log('service worker are not working !')
+  }
+</script>
 </body>
 </html>

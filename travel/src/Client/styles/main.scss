@@ -1,3 +1,4 @@
+$font-family :'Redressed', cursive;
 body{
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -12,7 +13,7 @@ body{
     justify-content: center;
     grid-gap: 1em;
     font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    font-family: $font-family;
     background-image: url('../media/weather.jpeg');
     background-size: cover;
     background-repeat:space;
@@ -32,10 +33,7 @@ body{
     background: rgba(70, 85, 119, 0.4);
     width: 680px;
 }
-#button{
-    width: 200px;
-    display: none;
-}
+
 #entryHolder{
 text-align: left;
 }
@@ -45,7 +43,8 @@ text-align: left;
  margin: 1em;
 }
 
-#cityname, #leave , #date{
+#cityname, #leave , #date , #endDate{
+    font-family: $font-family;
     width: 300px;
     margin-left: 7em;
     margin-bottom: 1em;
@@ -55,6 +54,7 @@ text-align: left;
 }
 #generate{
    width: 250px;
+   font-family: $font-family;
 }
 .headline {
     border: #3b4a6b;
@@ -67,7 +67,7 @@ text-align: left;
 }
 .cityname{
     margin-left: 1em;
-    margin-top: 2em;
+    margin-top: 1em;
     width: 350px;
 }
 .title{
@@ -86,6 +86,7 @@ text-align: left;
 
 ::placeholder{
     color: #c3d2d3;
+    font-family: $font-family;
 }
 /*  Basic Styling To Override Default For Basic HTML Elements */
 
@@ -96,7 +97,6 @@ input{
     background:#22b2da;
     color: #c3d2d3;
     font-size: 20px;
-    font-family: 'Oswald', sans-serif;
     border: none;
 }
 
