@@ -36,7 +36,8 @@ function imag (req , res){
 }
 
 function weather (req,res){
-    projectData['weather'] = req.body.weather;
+    projectData['temp'] = req.body.temp;
+    projectData['des'] = req.body.des;
     res.send(projectData);
     console.log(projectData)
 }

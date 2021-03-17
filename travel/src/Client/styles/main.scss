@@ -15,8 +15,7 @@ body{
     font-family: 'Oswald', sans-serif;
     background-image: url('../media/weather.jpeg');
     background-size: cover;
-
-
+    background-repeat:space;
 }
 .bas{
     background-size: auto;
@@ -24,32 +23,31 @@ body{
     height: auto;
     background: transparent;
     background: #edf1f128;
-
-
 }
 .holder{
-    margin-left: 2em;
+    margin-left: 9.5em;
 }
 
 .entry{
-    background: rgba(59, 74, 107, .4);
-    width: 295px;
-    margin-left: 19em;
-    margin-top: -16em;
+    background: rgba(70, 85, 119, 0.4);
+    width: 680px;
 }
-
+#button{
+    width: 200px;
+    display: none;
+}
 #entryHolder{
 text-align: left;
 }
 
-#l, #c , #de , #after , #weather{
+#fromToCity,#fromToDate, #weather{
  color: #fffff8;
  margin: 1em;
 }
 
 #cityname, #leave , #date{
     width: 300px;
-    margin-right: 2em;
+    margin-left: 7em;
     margin-bottom: 1em;
     background: rgba(167, 170, 177, 0.4);
     border-radius: 0.3em;
@@ -75,6 +73,15 @@ text-align: left;
 .title{
     text-align: center;
     color: #c3d2d3;
+    font-size: 30px;
+    background-color: #113849;
+
+}
+#small{
+    display: none;
+    text-decoration: none;
+    color: whitesmoke;
+    cursor: pointer;
 }
 
 ::placeholder{
