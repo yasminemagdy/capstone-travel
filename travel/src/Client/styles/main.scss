@@ -82,6 +82,9 @@ text-align: left;
     text-decoration: none;
     color: whitesmoke;
     cursor: pointer;
+    &:hover{
+        color:black
+    }
 }
 
 ::placeholder{
@@ -111,7 +114,11 @@ button{
     border: none;
     box-shadow: 2px 4px 5px #444;
     border-radius: 1em;
+    &:hover{
+         color: black;
+            }
 }
+
 h1{
     font-size: 36px;
 }
@@ -141,3 +148,13 @@ button:focus {
     font-family: 'Oswald', sans-serif;
 
 } 
+
+@media screen and (max-width :970px){
+    .bas{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 970;
+    }
+
+}
