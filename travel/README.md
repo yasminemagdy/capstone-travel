@@ -16,6 +16,6 @@ First magician , this API gives you countryName, latitude , longitude , and othe
 #### [Weatherbit API](#https://www.weatherbit.io/)
 Second Magician , from its name , it gives you the weather information , and the expected temp
 
-#### [pixabay] (#https://pixabay.com/)
+#### [pixabay](#https://pixabay.com/)
 Third Magician , gives you the photo of the city ! to push u to go ! 
 
