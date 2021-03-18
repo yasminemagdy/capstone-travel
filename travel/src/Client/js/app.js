@@ -14,7 +14,7 @@ const weatherKEY = "d7bf7e7673614d349a16686a8d4e2149"
 
 //pixabay API and URL
 const pixabayurl = "https://pixabay.com/api/?"
-const pixabayKey = `key= 20714610-a23f0d89119822e7408d9b201&`
+const pixabayKey = `key=20714610-a23f0d89119822e7408d9b201&`
 
 // Create a new date instance dynamically with JS
 let d = new Date();
