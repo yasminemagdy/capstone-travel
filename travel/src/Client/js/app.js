@@ -3,7 +3,6 @@ const cityname = document.getElementById('cityname');
 const leaveCity = document.getElementById('leave')
 const date = document.getElementById('date');
 const endDate = document.getElementById('endDate');
-const endDateValue = endDate.value;
 
 //Geonames URL and API(user)
 const geoNamesUrl = "http://api.geonames.org/searchJSON?q=";
@@ -34,30 +33,28 @@ function action(event) {
     const datv = date.value;
     const cityv = cityname.value;
     const leve = leaveCity.value;
+    const endDateValue  =endDate.value;
     
     //get day from date input
     const validDate = new Date(date.value).getDate();
     const validEndDate = new Date(endDate.value).getDate();
     
+
     //check if the user but the date in the right way , the arrive day of course cannot be higher than the leave date
+    if(cityv === ''){alert('Please Fill The City Field'); return false;}
+    if(datv === ''){alert('Please Fill The Arrrive Date Field') ; return false;}
+    if(leve === ''){alert('Please Fill The leaving city Field'); return false;}
+    if(endDateValue === '') {alert('Pleas Fill The Dep Date'); return false}
+    
     if(validDate > validEndDate){
         alert('Pleas put a valid date')
         return false;
     }
-    
-    //if the user but the arrive city and leave city , the same value , so he is in the country itself!
-    if(leve == cityv){
-        alert('OHH It seems like your in the city itself! , Go to another city')
-        return false;
-    }
-    
+    /*
     //if any date field is empty , make an alert to fill it 
-    if(datv == "") {
+    if(datv.length < 1) {
         alert('Please Fill Out The Date Field')
         return false;
-    }
-    if(endDateValue == ""){
-        alert('please Fill Out the Date Field')
     }
     
     //if city name is empty , make an alert to fill it 
@@ -71,6 +68,7 @@ function action(event) {
         alert("Please Fill Out The First Field")
         return false
     }
+    */
     // Time to get the data from APIs , first th geonames , to use its latitude and longitude on weatherbit API 
     getCityData(geoNamesUrl , cityv , user)
     //then take the latitude and longitude
