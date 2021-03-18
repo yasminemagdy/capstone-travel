@@ -1,3 +1,4 @@
+const dotnev = require('dotenv').config();
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 

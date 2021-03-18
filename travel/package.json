@@ -22,6 +22,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.1",
     "mini-css-extract-plugin": "^1.3.9",
