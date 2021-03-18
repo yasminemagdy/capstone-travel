@@ -1,0 +1,160 @@
+$font-family :'Redressed', cursive;
+body{
+    background: #fffff8;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#app{
+    display: grid;
+    grid-auto-rows: minmax(150px, auto);
+    /* grid-template-columns:  */
+    height:100vh;
+    color: #fffff8;
+    justify-content: center;
+    grid-gap: 1em;
+    font-size: 20px;
+    font-family: $font-family;
+    background-image: url('../media/weather.jpeg');
+    background-size: cover;
+    background-repeat:space;
+}
+.bas{
+    background-size: auto;
+    width: 680px;
+    height: auto;
+    background: transparent;
+    background: #edf1f128;
+}
+.holder{
+    margin-left: 9.5em;
+}
+
+.entry{
+    background: rgba(70, 85, 119, 0.4);
+    width: 680px;
+}
+
+#entryHolder{
+text-align: left;
+}
+
+#fromToCity,#fromToDate, #weather{
+ color: #fffff8;
+ margin: 1em;
+}
+
+#cityname, #leave , #date , #endDate{
+    font-family: $font-family;
+    width: 300px;
+    margin-left: 7em;
+    margin-bottom: 1em;
+    background: rgba(167, 170, 177, 0.4);
+    border-radius: 0.3em;
+
+}
+#generate{
+   width: 250px;
+   font-family: $font-family;
+}
+.headline {
+    border: #3b4a6b;
+    background-color: #113849;
+    height:50px;
+    font-size: 26px;
+    color: #c3d2d3;
+    text-align: center;
+
+}
+.cityname{
+    margin-left: 1em;
+    margin-top: 1em;
+    width: 350px;
+}
+.title{
+    text-align: center;
+    color: #c3d2d3;
+    font-size: 30px;
+    background-color: #113849;
+
+}
+#small{
+    display: none;
+    text-decoration: none;
+    color: whitesmoke;
+    cursor: pointer;
+    &:hover{
+        color:black
+    }
+}
+
+::placeholder{
+    color: #c3d2d3;
+    font-family: $font-family;
+}
+/*  Basic Styling To Override Default For Basic HTML Elements */
+
+input{
+    display:block;
+    height: 60px;
+    width: 320px;
+    background:#22b2da;
+    color: #c3d2d3;
+    font-size: 20px;
+    border: none;
+}
+
+button{
+    width: 300px;
+    height: 80px;
+    background :transparent;
+    background: rgba(167, 170, 177, 0.4);
+    color: #c3d2d3;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    box-shadow: 2px 4px 5px #444;
+    border-radius: 1em;
+    &:hover{
+         color: black;
+            }
+}
+
+h1{
+    font-size: 36px;
+}
+
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: #c3d2d3;
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: #c3d2d3;
+    font-family: 'Oswald', sans-serif;
+
+} 
+  
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: #c3d2d3;
+    font-family: 'Oswald', sans-serif;
+
+} 
+
+@media screen and (max-width :970px){
+    .bas{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 970;
+    }
+
+}

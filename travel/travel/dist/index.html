@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Travel App</title>
+<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+<script defer src="bundle.min.js"></script></head>
+ <body>
+<div id = "app">
+  <div class="bas">
+  <div class =" headline">
+    Travel App
+  </div>
+  <form class="form">
+  <div class ="holder cityname">
+    <input type="text" id="leave" placeholder="FROM">
+    <input type="text" id="cityname" placeholder="TO:">
+    <input type="text" id="date" placeholder="date of arrival" onfocus="(this.type='date')">
+    <input type="text" id="endDate" placeholder="Departure Date" onfocus="(this.type='date')">
+  </div>
+  <div class ="holder">
+    <button id="generate" type = "submit"> Generate </button>
+    </form>
+    <a id="small">Click Here To See Trip Information</a>
+  </div><br><br><br><br><br><br>
+  <section class =" entry">
+    <div class = "title">Trip Information</div>
+   <div id = "entryHolder">
+   <p id="fromToCity"></p> 
+   <p id="fromToDate"></p>
+   <p id="weather"></p>
+   <div id="img"></div>
+</section>
+</div>
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load' , () =>{
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(regristration => {
+        console.log('regristartion is successful')
+
+      });
+    });
+  }else{
+    console.log('service worker are not working !')
+  }
+</script>
+</body>
+</html>
